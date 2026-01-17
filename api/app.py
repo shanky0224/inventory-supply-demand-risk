@@ -11,8 +11,8 @@ app = FastAPI(
 )
 
 # Load model artifacts
-model = joblib.load("models/mismatch_risk_model.pkl")
-scaler = joblib.load("models/scaler.pkl")
+model = joblib.load("../models/mismatch_risk_model.pkl")
+scaler = joblib.load("../models/scaler.pkl")
 
 FEATURE_COLS = [
     "reorder_level",
