@@ -1,8 +1,9 @@
 from fastapi import FastAPI, UploadFile, File
 import pandas as pd
 import joblib
-from feature_engineering import engineer_features
 import os
+
+from feature_engineering import engineer_features
 
 app = FastAPI(
     title="Inventory Supply–Demand Risk API",
@@ -10,12 +11,13 @@ app = FastAPI(
     version="1.0"
 )
 
-ROOT_DIR = os.getcwd()  # Render sets this to /opt/render/project/src
-MODEL_DIR = os.path.join(ROOT_DIR, "models")
+# ✅ Robust path handling (works locally + Render)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))   # /src/api
+PROJECT_ROOT = os.path.dirname(BASE_DIR)                # /src
+MODEL_DIR = os.path.join(PROJECT_ROOT, "models")
 
 model = joblib.load(os.path.join(MODEL_DIR, "mismatch_risk_model.pkl"))
 scaler = joblib.load(os.path.join(MODEL_DIR, "scaler.pkl"))
-
 
 FEATURE_COLS = [
     "reorder_level",
