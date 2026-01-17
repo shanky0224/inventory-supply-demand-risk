@@ -12,9 +12,9 @@ app = FastAPI(
 )
 
 # ✅ Robust path handling (works locally + Render)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))   # /src/api
-PROJECT_ROOT = os.path.dirname(BASE_DIR)                # /src
-MODEL_DIR = os.path.join(PROJECT_ROOT, "models")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_DIR = os.path.join(BASE_DIR, "models")
+
 
 model = joblib.load(os.path.join(MODEL_DIR, "mismatch_risk_model.pkl"))
 scaler = joblib.load(os.path.join(MODEL_DIR, "scaler.pkl"))
